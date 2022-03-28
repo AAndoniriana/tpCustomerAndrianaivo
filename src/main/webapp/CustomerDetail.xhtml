@@ -15,7 +15,8 @@
         <f:view>
 
 
-            <h:form>
+            <h:outputText value="Aucun client avec l'id #{customerDetailMBean.idCustomer} !" rendered='#{customerDetailMBean.detail == null}'/>
+            <h:form rendered="#{customerDetailMBean.detail != null}">
                 <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="CustomerId:" for="customerId" />
