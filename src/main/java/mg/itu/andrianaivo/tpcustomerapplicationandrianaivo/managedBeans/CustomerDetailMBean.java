@@ -7,6 +7,9 @@ package mg.itu.andrianaivo.tpcustomerapplicationandrianaivo.managedBeans;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import mg.itu.andrianaivo.tpcustomerapplicationandrianaivo.session.CustomerManager;
@@ -52,6 +55,21 @@ public class CustomerDetailMBean implements Serializable {
     
     public List<DiscountCode> getDiscountCodes() {
         return discountManager.getAllDiscountCode();
+    }
+    
+    public Converter<DiscountCode> getDiscountCodeConverter() {
+        return new Converter<DiscountCode>() {
+            
+            @Override
+            public DiscountCode getAsObject(FacesContext context, UIComponent component, String value) {
+                return discountManager.findById(value);
+            }
+            
+            @Override
+            public String getAsString(FacesContext context, UIComponent component, DiscountCode value) {
+                return value.getDiscountCode();
+            }
+        };
     }
     
     public void setIdCustomer(int idCustomer) {
