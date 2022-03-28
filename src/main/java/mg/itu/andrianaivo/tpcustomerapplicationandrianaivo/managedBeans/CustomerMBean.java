@@ -24,7 +24,7 @@ public class CustomerMBean implements Serializable {
 
     @EJB
     private CustomerManager customerManager;
-
+    
     /**
      * Creates a new instance of CustomerMBean
      */

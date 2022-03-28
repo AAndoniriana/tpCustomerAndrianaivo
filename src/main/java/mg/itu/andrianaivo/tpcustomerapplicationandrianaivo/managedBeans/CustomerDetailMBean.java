@@ -5,11 +5,14 @@
 package mg.itu.andrianaivo.tpcustomerapplicationandrianaivo.managedBeans;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import mg.itu.andrianaivo.tpcustomerapplicationandrianaivo.session.CustomerManager;
 import mg.itu.andrianaivo.tpcustomerapplicationandrianaivo.entities.Customer;
+import mg.itu.andrianaivo.tpcustomerapplicationandrianaivo.entities.DiscountCode;
+import mg.itu.andrianaivo.tpcustomerapplicationandrianaivo.session.DiscountCodeManager;
 
 /**
  *
@@ -24,6 +27,9 @@ public class CustomerDetailMBean implements Serializable {
     
     @EJB
     private CustomerManager customerManager;
+    @EJB
+    private DiscountCodeManager discountManager;
+
 
     /**
      * Creates a new instance of CustomerDetail
@@ -42,6 +48,10 @@ public class CustomerDetailMBean implements Serializable {
     public String update() {
         customer = customerManager.update(customer);
         return "CustomerList";
+    }
+    
+    public List<DiscountCode> getDiscountCodes() {
+        return discountManager.getAllDiscountCode();
     }
     
     public void setIdCustomer(int idCustomer) {
