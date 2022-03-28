@@ -5,9 +5,6 @@
 package mg.itu.andrianaivo.tpcustomerapplicationandrianaivo.session;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,6 +20,10 @@ public class CustomerManager {
 
     @PersistenceContext(unitName = "customerPU")
     private EntityManager em;
+    
+    public Customer getCustomer(int idCustomer) {
+        return em.find(Customer.class, idCustomer);
+    }
 
     public List<Customer> getAllCustomer() {
         Query query = em.createNamedQuery("Customer.findAll");
